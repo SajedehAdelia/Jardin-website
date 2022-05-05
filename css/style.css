@@ -1,0 +1,153 @@
+body {
+background-color : #ffb13c;
+margin : auto;
+}
+
+h1 {
+color : #07a850;
+text-align : center;
+border : 2px solid;
+border-color: #07a850;
+border-radius: 5px;
+margin-left: 0%;
+margin-right: 20%;
+padding:5px
+}
+
+.bloc-haut{
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+/* menu nav */
+.menu-haut {
+background-color : #0d8dd8;
+font-size : 20px;
+color : #FFFAFA;
+overflow: hidden;
+width: 100%;
+}
+
+ul{
+display: table;
+width: 100%;
+}
+ul li{
+display: table-cell;
+}
+
+/* paragraphe d'introduction */
+.info{
+text-align:center;
+font: justify;
+background-color:#287A6F;
+border-color:black;
+border:2px solid;
+border-radius:5px;
+margin:5%;
+padding:10px;
+font-size: 20px
+}
+
+/* image entre info et stat */
+.container-bande{
+text-align:center
+}
+
+section{ /* menu stat */
+text-align:center;
+font: justify;
+background-color:#B6A570;
+border-color:black;
+border:2px solid;
+border-radius:5px;
+margin-top:5%;
+margin-bottom:5%;
+margin-left:30%;
+margin-right:30%
+}
+
+/* tableau affichage fct1 */
+.tab-fct1 table{
+border : medium solid #EF2721;
+width : 30%;
+margin-top: 15px;
+margin-left : 35%;
+margin-right : 35%;
+margin-bottom: 15px;
+background-color: #808080
+}
+
+.tab-fct1 td{
+text-align:center;
+border : medium solid #2B2B2A;
+width : 100px;
+height : 100px
+}
+
+/* formulaire fct1 et formulaire de zone */
+.form-fct1, .form-zone{
+text-align:center;
+background-color:#8fe5e4;
+border-color:black;
+border-radius:5px;
+border:2px solid;
+margin:5%;
+margin-left:20%;
+margin-right:20%
+}
+
+/*Style des liens (menu nav)*/
+
+a{
+outline:none;
+padding: 2px 1px 0;
+}
+
+a:link{
+color:#265301
+}
+
+a:visited{
+color:#437A16
+}
+
+a:active{
+background: #265301;
+color: #CDFEAA
+}
+
+/*affichage zone*/
+.tab-zone table{
+font-family: arial, sans-serif;
+border-collapse: collapse;
+margin-left:20%;
+margin-right:20%
+}
+
+.tab-zone td{
+margin: 0;
+text-align: left;
+padding: 0;
+}
+
+.res-zone{
+text-align:center;
+font: justify;
+background-color:#8fe5e4;
+border-color:black;
+border-radius:5px;
+border:2px solid;
+margin:5%;
+margin-left:20%;
+margin-right:20%
+}
+
+/* pied de page */
+footer {
+background-color: #e64545;
+text-align : center;
+margin-top : 15%;
+width: 100%;
+}

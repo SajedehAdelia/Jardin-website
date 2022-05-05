@@ -1,0 +1,165 @@
+CREATE TABLE Jardin(
+   Id_Jardin INT,
+   nomJ VARCHAR(255),
+   surfaceJ DOUBLE NOT NULL,
+   PRIMARY KEY(Id_Jardin)
+);
+
+CREATE TABLE Potager(
+   Id_Jardin INT,
+   typesol VARCHAR(255),
+   PRIMARY KEY(Id_Jardin),
+   FOREIGN KEY(Id_Jardin) REFERENCES Jardin(Id_Jardin)
+);
+
+CREATE TABLE Verger(
+   Id_Jardin INT,
+   hauteurmax DOUBLE NOT NULL,
+   PRIMARY KEY(Id_Jardin),
+   FOREIGN KEY(Id_Jardin) REFERENCES Jardin(Id_Jardin)
+);
+
+CREATE TABLE Ornements(
+   Id_Jardin INT,
+   PRIMARY KEY(Id_Jardin),
+   FOREIGN KEY(Id_Jardin) REFERENCES Jardin(Id_Jardin)
+);
+
+CREATE TABLE Parcelles(
+   coord_par DOUBLE,
+   dim_par DOUBLE NOT NULL,
+   Id_Jardin INT NOT NULL,
+   PRIMARY KEY(coord_par),
+   FOREIGN KEY(Id_Jardin) REFERENCES Jardin(Id_Jardin)
+);
+
+CREATE TABLE Rangs(
+   num_r INT,
+   lat_r DOUBLE,
+   long_r DOUBLE,
+   alt_r DOUBLE,
+   coord_par DOUBLE NOT NULL,
+   PRIMARY KEY(num_r),
+   FOREIGN KEY(coord_par) REFERENCES Parcelles(coord_par)
+);
+
+CREATE TABLE Menace(
+   nom_Menace VARCHAR(255),
+   desc_M VARCHAR(255),
+   solution VARCHAR(255),
+   PRIMARY KEY(nom_Menace)
+);
+
+CREATE TABLE Variété(
+   nom_var VARCHAR(255),
+   annee_marche VARCHAR(255),
+   precocite VARCHAR(255),
+   desc_var VARCHAR(255),
+   plantation VARCHAR(255),
+   entretien VARCHAR(255),
+   recolte VARCHAR(255),
+   nbj_levee DOUBLE,
+   debut_mp DOUBLE,
+   fin_mp DOUBLE,
+   debut_rec DOUBLE,
+   fin_rec DOUBLE,
+   comm_var VARCHAR(255),
+   PRIMARY KEY(nom_var)
+);
+
+CREATE TABLE Semée(
+   nom_var VARCHAR(255),
+   PRIMARY KEY(nom_var),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var)
+);
+
+CREATE TABLE Plantée(
+   nom_var VARCHAR(255),
+   PRIMARY KEY(nom_var),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var)
+);
+
+CREATE TABLE Recoltée(
+   nom_var VARCHAR(255),
+   PRIMARY KEY(nom_var),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var)
+);
+
+CREATE TABLE Type_plante(
+   Id_Typeplante VARCHAR(255),
+   PRIMARY KEY(Id_Typeplante)
+);
+
+CREATE TABLE Semencier(
+   nom_s VARCHAR(255),
+   web_s VARCHAR(255),
+   PRIMARY KEY(nom_s)
+);
+
+CREATE TABLE Plantes(
+   nom_pl VARCHAR(255),
+   nom_Lat VARCHAR(255),
+   categorie VARCHAR(255),
+   Id_Typeplante VARCHAR(255),
+   Id_Typeplante_1 VARCHAR(255),
+   nom_var VARCHAR(255),
+   PRIMARY KEY(nom_pl),
+   FOREIGN KEY(Id_Typeplante) REFERENCES Type_plante(Id_Typeplante),
+   FOREIGN KEY(Id_Typeplante_1) REFERENCES Type_plante(Id_Typeplante),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var)
+);
+
+CREATE TABLE Possèder(
+   Id_Jardin INT,
+   nom_pl VARCHAR(255),
+   PRIMARY KEY(Id_Jardin, nom_pl),
+   FOREIGN KEY(Id_Jardin) REFERENCES Jardin(Id_Jardin),
+   FOREIGN KEY(nom_pl) REFERENCES Plantes(nom_pl)
+);
+
+CREATE TABLE Subir(
+   nom_pl VARCHAR(255),
+   nom_Menace VARCHAR(255),
+   PRIMARY KEY(nom_pl, nom_Menace),
+   FOREIGN KEY(nom_pl) REFERENCES Plantes(nom_pl),
+   FOREIGN KEY(nom_Menace) REFERENCES Menace(nom_Menace)
+);
+
+CREATE TABLE Envahir(
+   nom_pl VARCHAR(255),
+   num_r INT,
+   période DOUBLE,
+   PRIMARY KEY(nom_pl, num_r),
+   FOREIGN KEY(nom_pl) REFERENCES Plantes(nom_pl),
+   FOREIGN KEY(num_r) REFERENCES Rangs(num_r)
+);
+
+CREATE TABLE Occuper(
+   num_r INT,
+   nom_var VARCHAR(255),
+   qual_recolte VARCHAR(255),
+   commentaire_rec VARCHAR(255),
+   PRIMARY KEY(num_r, nom_var),
+   FOREIGN KEY(num_r) REFERENCES Rangs(num_r),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var)
+);
+
+CREATE TABLE Associer(
+   nom_var VARCHAR(255),
+   nom_var_1 VARCHAR(255),
+   avantage VARCHAR(255),
+   benefice VARCHAR(255),
+   PRIMARY KEY(nom_var, nom_var_1),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var),
+   FOREIGN KEY(nom_var_1) REFERENCES Variété(nom_var)
+);
+
+CREATE TABLE Produit(
+   nom_var VARCHAR(255),
+   nom_s VARCHAR(255),
+   bio VARCHAR(50),
+   conventionnel VARCHAR(50),
+   PRIMARY KEY(nom_var, nom_s),
+   FOREIGN KEY(nom_var) REFERENCES Variété(nom_var),
+   FOREIGN KEY(nom_s) REFERENCES Semencier(nom_s)
+);
